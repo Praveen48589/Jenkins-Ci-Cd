@@ -8,7 +8,7 @@ pipeline {
         stage('Clone Code!!!') {
             steps {
                 git branch: 'main',
-                url: 'https://github.com/Praveen48589/Food-Order-Website.git'
+                url: 'https://github.com/Praveen48589/Jenkins-Ci-Cd.git'
             }
         }
 
@@ -56,8 +56,10 @@ pipeline {
             steps {
                 
                 sh 'docker compose down'
+
+                sh 'docker compose pull'
                            
-                sh 'docker compose up -d --build --force-recreate'
+                sh 'docker compose up -d --force-recreate'
             }
         }
     }
