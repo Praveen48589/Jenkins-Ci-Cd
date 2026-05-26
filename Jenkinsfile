@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    // agent {
+    //     label 'dev'   >> for agent Node 
+    // }
+
     stages {
 
         stage('Clone Code!!!') {
@@ -52,7 +56,8 @@ pipeline {
 
         stage('Deploy!!!') {
             steps {
-                sh 'docker compose up -d --build'
+                sh 'docker compose down'
+                sh 'docker compose up -d --build --force-recreate'
             }
         }
     }
@@ -62,8 +67,8 @@ pipeline {
         success {
             script {
                 emailext(
-                    from: "praveen740@gmail.com",
-                    to: "praveen740@gmail.com",
+                    from: "praveentomar740@gmail.com",
+                    to: "praveentomar740@gmail.com",
                     body: "Build success for CI-CD pipeline",
                     subject: "Build success for CI-CD pipeline"
                 )
@@ -73,8 +78,8 @@ pipeline {
         failure {
             script {
                 emailext(
-                    from: "praveen740@gmail.com",
-                    to: "praveen740@gmail.com",
+                    from: "praveentomar740@gmail.com",
+                    to: "praveentomar740@gmail.com",
                     body: "Build failed for CI-CD pipeline",
                     subject: "Build failed for CI-CD pipeline"
                 )
