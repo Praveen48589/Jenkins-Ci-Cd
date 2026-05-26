@@ -1,7 +1,8 @@
 pipeline {
-    agent {
-        label 'dev'
-    }
+    agent any
+    // agent {
+    //     label 'dev'   >> for agent Node 
+    // }
 
     stages {
 
