@@ -57,10 +57,8 @@ pipeline {
             steps {
                 
                 sh 'docker compose down'
-                
-                sh 'docker compose pull'
-                        
-                sh 'docker compose up -d --force-recreate'
+                       
+                sh 'docker compose up -d --build --force-recreate'
             }
         }
     }
