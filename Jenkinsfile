@@ -73,8 +73,8 @@ pipeline {
             emailext(
                 from: 'praveentomar740@gmail.com',
                 to: 'praveentomar740@gmail.com',
-                subject: "Build failed for CI-CD pipeline",
-                body: "Build failed for CI-CD pipeline"
+                subject: "Build Passed for CI-CD pipeline",
+                body: "Build Passed for CI-CD pipeline"
             )
         }
 
