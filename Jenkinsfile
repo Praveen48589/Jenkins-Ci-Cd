@@ -56,4 +56,29 @@ pipeline {
             }
         }
     }
+
+    post {
+
+        success {
+            script {
+                emailext(
+                    from: "praveen740@gmail.com",
+                    to: "praveen740@gmail.com",
+                    body: "Build success for CI-CD pipeline",
+                    subject: "Build success for CI-CD pipeline"
+                )
+            }
+        }
+
+        failure {
+            script {
+                emailext(
+                    from: "praveen740@gmail.com",
+                    to: "praveen740@gmail.com",
+                    body: "Build failed for CI-CD pipeline",
+                    subject: "Build failed for CI-CD pipeline"
+                )
+            }
+        }
+    }
 }
