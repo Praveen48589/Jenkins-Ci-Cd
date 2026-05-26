@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    // agent {
+    //     label 'dev'   >> for agent Node 
+    // }
 
     // agent {
     //     label 'dev'   >> for agent Node 
@@ -10,7 +13,7 @@ pipeline {
         stage('Clone Code!!!') {
             steps {
                 git branch: 'main',
-                url: 'https://github.com/Praveen48589/Food-Order-Website.git'
+                url: 'https://github.com/Praveen48589/Jenkins-Ci-Cd.git'
             }
         }
 
@@ -56,6 +59,7 @@ pipeline {
 
         stage('Deploy!!!') {
             steps {
+<<<<<<< HEAD
                 sh 'docker compose down'
                 sh 'docker compose up -d --build --force-recreate'
             }
@@ -83,6 +87,12 @@ pipeline {
                     body: "Build failed for CI-CD pipeline",
                     subject: "Build failed for CI-CD pipeline"
                 )
+=======
+                
+                sh 'docker compose down'
+                       
+                sh 'docker compose up -d --build --force-recreate'
+>>>>>>> 49b500401e2b255507ddd7b3bb6742c063684b3d
             }
         }
     }
