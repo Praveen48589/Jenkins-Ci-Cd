@@ -603,6 +603,7 @@ pipeline {
 
 ```yaml
 services:
+
   frontend:
     build:
       context: ./frontend
@@ -610,6 +611,8 @@ services:
       - "80:80"
     depends_on:
       - backend
+    networks:
+      - my-network
 
   backend:
     build:
@@ -619,12 +622,29 @@ services:
     depends_on:
       - mongodb
     environment:
-      MONGO_URI: mongodb://admin:pass123@mongodb:27017
+      MONGO_URI: mongodb://admin:pass123@mongodb:27017/mydatabase?authSource=admin
+    networks:
+      - my-network
 
   mongodb:
-    image: mongo
+    image: mongo:6
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: pass123
+    volumes:
+      - mongo-data:/data/db
     ports:
       - "27017:27017"
+    networks:
+      - my-network
+
+volumes:
+  mongo-data:
+
+networks:
+  my-network:
+    driver: bridge
 ```
 
 ---
